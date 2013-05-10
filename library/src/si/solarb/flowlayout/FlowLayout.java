@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created with IntelliJ IDEA.
  * User: Blaž Šolar
  * Date: 5/6/13
  * Time: 8:17 PM
@@ -86,6 +85,7 @@ public class FlowLayout extends ViewGroup {
 
 		for(int i = 0; i < numLines; i++) {
 
+			lineHeight = lineHeights.get(i);
 			lineViews = lines.get(i);
 			left = 0;
 
@@ -99,21 +99,38 @@ public class FlowLayout extends ViewGroup {
 					continue;
 				}
 
+				LayoutParams lp = (LayoutParams) child.getLayoutParams();
+
+				// if height is match_parent we need to remeasure child to line height
+				if(lp.height == LayoutParams.MATCH_PARENT) {
+					int childWidthMode = MeasureSpec.AT_MOST;
+					int childWidthSize = lineWidth;
+
+					if(lp.width == LayoutParams.MATCH_PARENT) {
+						childWidthMode = MeasureSpec.EXACTLY;
+					} else if(lp.width >= 0) {
+						childWidthMode = MeasureSpec.EXACTLY;
+						childWidthSize = lp.width;
+					}
+
+					child.measure(
+							MeasureSpec.makeMeasureSpec(childWidthSize, childWidthMode),
+							MeasureSpec.makeMeasureSpec(lineHeight, MeasureSpec.EXACTLY)
+					);
+				}
+
 				int childWidth = child.getMeasuredWidth();
 				int childHeight = child.getMeasuredHeight();
 
 				child.layout(left, top, left + childWidth, top + childHeight);
 
-				Log.v(VIEW_LOG_TAG, left + " " + top);
-
 				left += childWidth;
 
 			}
-			Log.v(VIEW_LOG_TAG, "line");
-			top += lineHeights.get(i);
+
+			top += lineHeight;
 		}
 
-		Log.v(VIEW_LOG_TAG, "done");
 	}
 
 	@Override
@@ -140,9 +157,29 @@ public class FlowLayout extends ViewGroup {
 				continue;
 			}
 
+			LayoutParams lp = (LayoutParams) child.getLayoutParams();
+
+			int childWidthMode = MeasureSpec.AT_MOST;
+			int childWidthSize = sizeWidth;
+
+			int childHeightMode = MeasureSpec.AT_MOST;
+			int childHeightSize = sizeHeight;
+
+			if(lp.width == LayoutParams.MATCH_PARENT) {
+				childWidthMode = MeasureSpec.EXACTLY;
+			} else if(lp.width >= 0) {
+				childWidthMode = MeasureSpec.EXACTLY;
+				childWidthSize = lp.width;
+			}
+
+			if(lp.height >= 0) {
+				childHeightMode = MeasureSpec.EXACTLY;
+				childHeightSize = lp.height;
+			}
+
 			child.measure(
-					MeasureSpec.makeMeasureSpec(sizeWidth, (modeWidth == MeasureSpec.EXACTLY) ? MeasureSpec.AT_MOST : modeWidth),
-					MeasureSpec.makeMeasureSpec(sizeHeight, (modeHeight == MeasureSpec.EXACTLY) ? MeasureSpec.AT_MOST : modeHeight)
+					MeasureSpec.makeMeasureSpec(childWidthSize, childWidthMode),
+					MeasureSpec.makeMeasureSpec(childHeightSize, childHeightMode)
 			);
 
 			int childWidth = child.getMeasuredWidth();
@@ -165,6 +202,21 @@ public class FlowLayout extends ViewGroup {
 		setMeasuredDimension(
 				(modeWidth == MeasureSpec.EXACTLY) ? sizeWidth : width,
 				(modeHeight == MeasureSpec.EXACTLY) ? sizeHeight : height);
+	}
+
+	@Override
+	protected ViewGroup.LayoutParams generateLayoutParams(ViewGroup.LayoutParams p) {
+		return new LayoutParams(p);
+	}
+
+	@Override
+	public ViewGroup.LayoutParams generateLayoutParams(AttributeSet attrs) {
+		return new LayoutParams(getContext(), attrs);
+	}
+
+	@Override
+	protected ViewGroup.LayoutParams generateDefaultLayoutParams() {
+		return new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
 	}
 
 	public class LayoutParams extends ViewGroup.LayoutParams {
