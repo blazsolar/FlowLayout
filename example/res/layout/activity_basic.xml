@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<si.solarb.flowlayout.FlowLayout xmlns:android="http://schemas.android.com/apk/res/android"
+		xmlns:app="http://schemas.android.com/apk/res/si.solarb.flowlayout"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent">
+
+	<Button
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="Some text" />
+
+	<Button
+			android:layout_width="wrap_content"
+			android:layout_height="100dp"
+			android:text="Text" />
+
+
+	<Button
+			android:layout_width="100dp"
+			android:layout_height="wrap_content"
+			android:text="Some longer text" />
+
+	<Button
+			android:layout_width="wrap_content"
+			android:layout_height="match_parent"
+			android:text="Text" />
+
+	<Button
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content" />
+
+	<Button
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="Another text" />
+
+</si.solarb.flowlayout.FlowLayout>
