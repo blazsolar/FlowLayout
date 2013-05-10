@@ -38,7 +38,7 @@ public class FlowLayoutActivity extends ListActivity {
 	private class ExamplesAdapter extends ArrayAdapter {
 
 		private Item[] mItems = {
-//				new Item<FlowLayoutActivity>("Basic sample", FlowLayoutActivity.class)
+				new Item<BasicActivity>(R.string.activity_basic, BasicActivity.class)
 		};
 
 		private LayoutInflater mInflater;
@@ -67,17 +67,17 @@ public class FlowLayoutActivity extends ListActivity {
 			}
 
 			TextView text = (TextView) v.findViewById(android.R.id.text1);
-			text.setText("asd");
+			text.setText(getItem(position).name);
 
 			return v;
 		}
 
 		private class Item<T extends Activity> {
 
-			private String name;
+			private int name;
 			private Class<T> activityClass;
 
-			public Item(String name, Class<T> activityClass) {
+			public Item(int name, Class<T> activityClass) {
 				super();
 				this.name = name;
 				this.activityClass = activityClass;
