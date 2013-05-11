@@ -1,10 +1,28 @@
+/*
+ * Copyright 2013 Blaž Šolar
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package si.solarb.flowlayout;
 
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
+import android.view.ViewDebug;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
@@ -16,6 +34,8 @@ import java.util.List;
  * Time: 8:17 PM
  */
 public class FlowLayout extends ViewGroup {
+
+	private int mGravity = Gravity.START | Gravity.TOP;
 
 	public FlowLayout(Context context) {
 		super(context);
@@ -31,6 +51,11 @@ public class FlowLayout extends ViewGroup {
 		TypedArray a = context.obtainStyledAttributes(attrs,
 				R.styleable.FlowLayout, defStyle, 0);
 
+		int index = a.getInt(R.styleable.FlowLayout_android_gravity, -1);
+		if(index > 0) {
+			setGravity(index);
+		}
+
 		a.recycle();
 	}
 
@@ -39,14 +64,29 @@ public class FlowLayout extends ViewGroup {
 
 		List<List<View>> lines = new ArrayList<List<View>>();
 		List<Integer> lineHeights = new ArrayList<Integer>();
+		List<Integer> lineMargins = new ArrayList<Integer>();
 
 		int width = getWidth();
+		int height = getHeight();
+
+		int linesSum = 0;
 
 		int lineWidth = 0;
 		int lineHeight = 0;
 		List<View> lineViews = new ArrayList<View>();
 
-		Log.v(VIEW_LOG_TAG, "count: " + getChildCount());
+		float horizontalGravityFactor = 0;
+		switch ((mGravity & Gravity.HORIZONTAL_GRAVITY_MASK)) {
+			case Gravity.LEFT:
+			default:
+				break;
+			case Gravity.CENTER_HORIZONTAL:
+				horizontalGravityFactor = .5f;
+				break;
+			case Gravity.RIGHT:
+				horizontalGravityFactor = 1;
+				break;
+		}
 
 		for(int i = 0; i < getChildCount(); i++) {
 
@@ -64,6 +104,9 @@ public class FlowLayout extends ViewGroup {
 			if(lineWidth + childWidth > width) {
 				lineHeights.add(lineHeight);
 				lines.add(lineViews);
+				lineMargins.add((int) ((width - lineWidth) * horizontalGravityFactor));
+
+				linesSum += lineHeight;
 
 				lineHeight = 0;
 				lineWidth = 0;
@@ -77,6 +120,22 @@ public class FlowLayout extends ViewGroup {
 
 		lineHeights.add(lineHeight);
 		lines.add(lineViews);
+		lineMargins.add((int) ((width - lineWidth) * horizontalGravityFactor));
+
+		linesSum += lineHeight;
+
+		int verticalGravityMargin = 0;
+		switch ((mGravity & Gravity.VERTICAL_GRAVITY_MASK)	) {
+			case Gravity.TOP:
+			default:
+				break;
+			case Gravity.CENTER_VERTICAL:
+				verticalGravityMargin = (height - linesSum) / 2;
+				break;
+			case Gravity.BOTTOM:
+				verticalGravityMargin = height - linesSum;
+				break;
+		}
 
 		int numLines = lineHeights.size();
 
@@ -87,7 +146,7 @@ public class FlowLayout extends ViewGroup {
 
 			lineHeight = lineHeights.get(i);
 			lineViews = lines.get(i);
-			left = 0;
+			left = lineMargins.get(i);
 
 			int children = lineViews.size();
 
@@ -122,10 +181,27 @@ public class FlowLayout extends ViewGroup {
 				int childWidth = child.getMeasuredWidth();
 				int childHeight = child.getMeasuredHeight();
 
+				int gravityMargin = 0;
+
+				if(Gravity.isVertical(lp.gravity)) {
+					switch (lp.gravity) {
+						case Gravity.TOP:
+						default:
+							break;
+						case Gravity.CENTER_VERTICAL:
+						case Gravity.CENTER:
+							gravityMargin = (lineHeight - childHeight - lp.topMargin - lp.bottomMargin) / 2 ;
+							break;
+						case Gravity.BOTTOM:
+							gravityMargin = lineHeight - childHeight - lp.topMargin - lp.bottomMargin;
+							break;
+					}
+				}
+
 				child.layout(left + lp.leftMargin,
-						top + lp.topMargin,
+						top + lp.topMargin + gravityMargin + verticalGravityMargin,
 						left + childWidth + lp.leftMargin,
-						top + childHeight + lp.topMargin);
+						top + childHeight + lp.topMargin + gravityMargin + verticalGravityMargin);
 
 				left += childWidth + lp.leftMargin + lp.rightMargin;
 
@@ -223,10 +299,33 @@ public class FlowLayout extends ViewGroup {
 		return new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
 	}
 
+	public void setGravity(int gravity) {
+		if(mGravity != gravity) {
+			if((gravity & Gravity.RELATIVE_HORIZONTAL_GRAVITY_MASK) == 0) {
+				gravity |= Gravity.START;
+			}
+
+			if((gravity & Gravity.VERTICAL_GRAVITY_MASK) == 0) {
+				gravity |= Gravity.TOP;
+			}
+
+			mGravity = gravity;
+			requestLayout();
+		}
+	}
+
 	public class LayoutParams extends MarginLayoutParams {
+
+		public int gravity = -1;
 
 		public LayoutParams(Context c, AttributeSet attrs) {
 			super(c, attrs);
+
+			TypedArray a = c.obtainStyledAttributes(attrs, R.styleable.FlowLayout_Layout);
+
+			gravity = a.getInt(R.styleable.FlowLayout_Layout_android_layout_gravity, -1);
+
+			a.recycle();
 		}
 
 		public LayoutParams(int width, int height) {

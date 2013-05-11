@@ -2,12 +2,14 @@
 <si.solarb.flowlayout.FlowLayout xmlns:android="http://schemas.android.com/apk/res/android"
 		xmlns:app="http://schemas.android.com/apk/res/si.solarb.flowlayout"
 		android:layout_width="match_parent"
-		android:layout_height="match_parent">
+		android:layout_height="match_parent"
+		android:gravity="right|bottom">
 
 	<Button
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:text="Some text" />
+			android:text="Some text"
+			android:layout_gravity="center_vertical" />
 
 	<Button
 			android:layout_width="wrap_content"
@@ -17,7 +19,8 @@
 	<Button
 			android:layout_width="100dp"
 			android:layout_height="wrap_content"
-			android:text="Some longer text" />
+			android:text="Some longer text"
+			android:layout_gravity="bottom"/>
 
 	<Button
 			android:layout_width="wrap_content"
