@@ -14,7 +14,6 @@
 			android:layout_height="100dp"
 			android:text="Text" />
 
-
 	<Button
 			android:layout_width="100dp"
 			android:layout_height="wrap_content"
@@ -23,15 +22,19 @@
 	<Button
 			android:layout_width="wrap_content"
 			android:layout_height="match_parent"
+			android:layout_margin="10dp"
 			android:text="Text" />
 
 	<Button
 			android:layout_width="match_parent"
-			android:layout_height="wrap_content" />
+			android:layout_height="wrap_content"
+			android:layout_margin="10dp"
+			android:text="Long text" />
 
 	<Button
-			android:layout_width="wrap_content"
+			android:layout_width="200dp"
 			android:layout_height="wrap_content"
+			android:layout_margin="10dp"
 			android:text="Another text" />
 
 </si.solarb.flowlayout.FlowLayout>

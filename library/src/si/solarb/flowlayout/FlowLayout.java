@@ -56,8 +56,10 @@ public class FlowLayout extends ViewGroup {
 				continue;
 			}
 
-			int childWidth = child.getMeasuredWidth();
-			int childHeight = child.getMeasuredHeight();
+			LayoutParams lp = (LayoutParams) child.getLayoutParams();
+
+			int childWidth = child.getMeasuredWidth() + lp.leftMargin + lp.rightMargin;
+			int childHeight = child.getMeasuredHeight() + lp.bottomMargin + lp.topMargin;
 
 			if(lineWidth + childWidth > width) {
 				lineHeights.add(lineHeight);
@@ -73,10 +75,8 @@ public class FlowLayout extends ViewGroup {
 			lineViews.add(child);
 		}
 
-		if(lineHeight > 0) {
-			lineHeights.add(lineHeight);
-			lines.add(lineViews);
-		}
+		lineHeights.add(lineHeight);
+		lines.add(lineViews);
 
 		int numLines = lineHeights.size();
 
@@ -115,16 +115,19 @@ public class FlowLayout extends ViewGroup {
 
 					child.measure(
 							MeasureSpec.makeMeasureSpec(childWidthSize, childWidthMode),
-							MeasureSpec.makeMeasureSpec(lineHeight, MeasureSpec.EXACTLY)
+							MeasureSpec.makeMeasureSpec(lineHeight - lp.topMargin - lp.bottomMargin, MeasureSpec.EXACTLY)
 					);
 				}
 
 				int childWidth = child.getMeasuredWidth();
 				int childHeight = child.getMeasuredHeight();
 
-				child.layout(left, top, left + childWidth, top + childHeight);
+				child.layout(left + lp.leftMargin,
+						top + lp.topMargin,
+						left + childWidth + lp.leftMargin,
+						top + childHeight + lp.topMargin);
 
-				left += childWidth;
+				left += childWidth + lp.leftMargin + lp.rightMargin;
 
 			}
 
@@ -167,6 +170,7 @@ public class FlowLayout extends ViewGroup {
 
 			if(lp.width == LayoutParams.MATCH_PARENT) {
 				childWidthMode = MeasureSpec.EXACTLY;
+				childWidthSize -= lp.leftMargin + lp.rightMargin;
 			} else if(lp.width >= 0) {
 				childWidthMode = MeasureSpec.EXACTLY;
 				childWidthSize = lp.width;
@@ -182,7 +186,7 @@ public class FlowLayout extends ViewGroup {
 					MeasureSpec.makeMeasureSpec(childHeightSize, childHeightMode)
 			);
 
-			int childWidth = child.getMeasuredWidth();
+			int childWidth = child.getMeasuredWidth() + lp.leftMargin + lp.rightMargin;
 
 			if(lineWidth + childWidth > sizeWidth) {
 
@@ -194,7 +198,7 @@ public class FlowLayout extends ViewGroup {
 
 			} else {
 				lineWidth += childWidth;
-				lineHeight = Math.max(lineHeight, child.getMeasuredHeight());
+				lineHeight = Math.max(lineHeight, child.getMeasuredHeight() + lp.topMargin + lp.bottomMargin);
 			}
 
 		}
@@ -219,7 +223,7 @@ public class FlowLayout extends ViewGroup {
 		return new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
 	}
 
-	public class LayoutParams extends ViewGroup.LayoutParams {
+	public class LayoutParams extends MarginLayoutParams {
 
 		public LayoutParams(Context c, AttributeSet attrs) {
 			super(c, attrs);
