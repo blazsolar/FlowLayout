@@ -21,14 +21,14 @@ import android.os.Bundle;
 
 /**
  * User: Blaž Šolar
- * Date: 5/9/13
- * Time: 5:13 PM
+ * Date: 5/12/13
+ * Time: 12:01 PM
  */
-public class BasicActivity extends Activity {
+public class AllInOneActivity extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_basic);
+		setContentView(R.layout.activity_all_in_one);
 	}
 }

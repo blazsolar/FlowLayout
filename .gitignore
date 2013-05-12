@@ -24,3 +24,6 @@ local.properties
 *.ipr
 *.iws
 .idea/
+
+# MAC
+.DS_Store
