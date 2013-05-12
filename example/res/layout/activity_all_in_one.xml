@@ -25,32 +25,36 @@
 	<Button
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:text="Lorem ipsum" />
+			android:text="Lorem ipsum"
+			android:layout_gravity="center_vertical" />
 
 	<Button
 			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
+			android:layout_height="100dp"
 			android:text="dolor" />
 
 	<Button
-			android:layout_width="wrap_content"
+			android:layout_width="100dp"
 			android:layout_height="wrap_content"
 			android:text="sit amet, consectetur"
 			android:layout_gravity="bottom"/>
 
 	<Button
 			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
+			android:layout_height="match_parent"
+			android:layout_margin="10dp"
 			android:text="adipisicing" />
 
 	<Button
-			android:layout_width="wrap_content"
+			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
+			android:layout_margin="10dp"
 			android:text="elit, sed do eiusmod" />
 
 	<Button
-			android:layout_width="wrap_content"
+			android:layout_width="200dp"
 			android:layout_height="wrap_content"
+			android:layout_margin="10dp"
 			android:text="tempor incididunt" />
 
 </si.solarb.flowlayout.FlowLayout>

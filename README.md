@@ -1,12 +1,38 @@
 FlowLayout
 ==========
 
-Android layout that arranges its children in multiple columns or rows depending on their width or height.
+FlowLayout is an opensource Android library that alows developers to easily integrate flow layout into their app. FlowLayout is an layout that display its children in multiple rows depending on their size.
 
+Setup
+-----
+* Import the library in Eclipse as Android library project. 
+* Add FlowLayout as dependency to your existing project.
+
+Usage
+-----
+```xml
+<si.solarb.flowlayout.FlowLayout xmlns:android="http://schemas.android.com/apk/res/android"
+		xmlns:flowlayout="http://schemas.android.com/apk/res/si.solarb.flowlayout"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:gravity="start|top">
+
+	<View
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_margin="0dp"
+			android:layout_gravity="start|top" />
+
+</si.solarb.flowlayout.FlowLayout>
+```
+
+Example
+-------
+![Framed example screenshot](https://raw.github.com/blazsolar/FlowLayout/master/example/framed_example_screenshot.png)
+Source code with examples is included in repository.
 
 License
-=======
-
+-------
 	Copyright 2013 Blaž Šolar
 	
 	Licensed under the Apache License, Version 2.0 (the "License");
