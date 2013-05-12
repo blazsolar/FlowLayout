@@ -11,7 +11,7 @@
     <application
 			android:label="@string/app_name"
 			android:icon="@drawable/ic_launcher"
-			android:theme="@android:style/Theme.Holo.Light.DarkActionBar">
+			android:theme="@android:style/Theme.Holo">
 
 		<activity android:name="FlowLayoutActivity"
 				android:label="@string/app_name">
@@ -25,6 +25,10 @@
 
 		<activity android:name=".BasicActivity"
 				android:label="@string/activity_basic" />
+
+		<activity
+			android:name=".AllInOneActivity"
+			android:label="@string/activity_all_in_one" />
 
     </application>
 

@@ -1,3 +1,19 @@
+/*
+ * Copyright 2013 Blaž Šolar
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package si.solarb.flowlayout.example;
 
 import android.app.Activity;
@@ -38,7 +54,8 @@ public class FlowLayoutActivity extends ListActivity {
 	private class ExamplesAdapter extends ArrayAdapter {
 
 		private Item[] mItems = {
-				new Item<BasicActivity>(R.string.activity_basic, BasicActivity.class)
+				new Item<BasicActivity>(R.string.activity_basic, BasicActivity.class),
+				new Item<AllInOneActivity>(R.string.activity_all_in_one, AllInOneActivity.class)
 		};
 
 		private LayoutInflater mInflater;
