@@ -19,10 +19,8 @@ package si.solarb.flowlayout;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
-import android.view.ViewDebug;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
@@ -220,7 +218,7 @@ public class FlowLayout extends ViewGroup {
 		int sizeHeight = MeasureSpec.getSize(heightMeasureSpec);
 
 		int modeWidth = MeasureSpec.getMode(widthMeasureSpec);
-		int modeHeight = MeasureSpec.getMode(widthMeasureSpec);
+		int modeHeight = MeasureSpec.getMode(heightMeasureSpec);
 
 		int width = 0;
 		int height = 0;
@@ -228,7 +226,9 @@ public class FlowLayout extends ViewGroup {
 		int lineWidth = 0;
 		int lineHeight = 0;
 
-		for(int i = 0; i < getChildCount(); i++) {
+        int childCount = getChildCount();
+
+		for(int i = 0; i < childCount; i++) {
 
 			View child = getChildAt(i);
 
@@ -267,15 +267,20 @@ public class FlowLayout extends ViewGroup {
 			if(lineWidth + childWidth > sizeWidth) {
 
 				width = Math.max(width, lineWidth);
-				lineWidth = 0;
+				lineWidth = childWidth;
 
 				height += lineHeight;
-				lineHeight = 0;
+				lineHeight = Math.max(lineHeight, child.getMeasuredHeight() + lp.topMargin + lp.bottomMargin);
 
 			} else {
 				lineWidth += childWidth;
 				lineHeight = Math.max(lineHeight, child.getMeasuredHeight() + lp.topMargin + lp.bottomMargin);
 			}
+
+            if(i == childCount - 1) {
+                width = Math.max(width, lineWidth);
+                height += lineHeight;
+            }
 
 		}
 
