@@ -27,3 +27,5 @@ local.properties
 
 # MAC
 .DS_Store
+
+library/build/
