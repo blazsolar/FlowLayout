@@ -22,7 +22,7 @@ compile "com.wefika:flowlayout:0.3.0"
 Usage
 -----
 ```xml
-<si.solarb.flowlayout.FlowLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.wefika.flowlayout.FlowLayout xmlns:android="http://schemas.android.com/apk/res/android"
 		xmlns:flowlayout="http://schemas.android.com/apk/res/si.solarb.flowlayout"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
@@ -34,7 +34,7 @@ Usage
 			android:layout_margin="0dp"
 			android:layout_gravity="start|top" />
 
-</si.solarb.flowlayout.FlowLayout>
+</com.wefika.flowlayout.FlowLayout>
 ```
 
 Example
