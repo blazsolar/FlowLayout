@@ -9,12 +9,13 @@ Dependencies
     compile "com.wefika:flowlayout:0.3.0-SNAPSHOT"
 
 ### Maven
-    <dependency>
-      <groupId>com.wefika</groupId>
-      <artifactId>flowlayout</artifactId>
-      <version>0.3.0</version>
-    </dependency>
-
+```xml
+<dependency>
+    <groupId>com.wefika</groupId>
+    <artifactId>flowlayout</artifactId>
+    <version>0.3.0</version>
+</dependency>
+```
 
 Usage
 -----
