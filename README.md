@@ -5,10 +5,10 @@ FlowLayout is an opensource Android library that alows developers to easily inte
 
 Dependencies
 ------------
-## Gradle
+### Gradle
     compile "com.wefika:flowlayout:0.3.0-SNAPSHOT"
 
-## Maven
+### Maven
     <dependency>
       <groupId>com.wefika</groupId>
       <artifactId>flowlayout</artifactId>
