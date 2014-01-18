@@ -15,7 +15,7 @@ Dependencies
     <artifactId>flowlayout</artifactId>
     <version>0.3.0</version>
 </dependency>
-```
+``
 
 Usage
 -----
@@ -37,7 +37,7 @@ Usage
 
 Example
 -------
-![Framed example screenshot](https://raw.github.com/blazsolar/FlowLayout/master/example/framed_example_screenshot.png)
+![Framed example screenshot](images/framed_example_screenshot.png)
 Source code with examples is included in repository.
 
 License
