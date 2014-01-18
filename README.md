@@ -7,7 +7,7 @@ Dependencies
 ------------
 ### Gradle
 ```
-compile "com.wefika:flowlayout:0.3.0-SNAPSHOT"
+compile "com.wefika:flowlayout:0.3.0"
 ```
 
 ### Maven
