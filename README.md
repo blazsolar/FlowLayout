@@ -3,10 +3,18 @@ FlowLayout
 
 FlowLayout is an opensource Android library that alows developers to easily integrate flow layout into their app. FlowLayout is an layout that display its children in multiple rows depending on their size.
 
-Setup
------
-* Import the library in Eclipse as Android library project. 
-* Add FlowLayout as dependency to your existing project.
+Dependencies
+------------
+## Gradle
+    compile "com.wefika:flowlayout:0.3.0-SNAPSHOT"
+
+## Maven
+    <dependency>
+      <groupId>com.wefika</groupId>
+      <artifactId>flowlayout</artifactId>
+      <version>0.3.0</version>
+    </dependency>
+
 
 Usage
 -----
