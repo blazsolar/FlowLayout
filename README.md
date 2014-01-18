@@ -6,7 +6,9 @@ FlowLayout is an opensource Android library that alows developers to easily inte
 Dependencies
 ------------
 ### Gradle
-    compile "com.wefika:flowlayout:0.3.0-SNAPSHOT"
+```
+compile "com.wefika:flowlayout:0.3.0-SNAPSHOT"
+```
 
 ### Maven
 ```xml
@@ -15,7 +17,7 @@ Dependencies
     <artifactId>flowlayout</artifactId>
     <version>0.3.0</version>
 </dependency>
-``
+```
 
 Usage
 -----
