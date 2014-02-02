@@ -35,6 +35,10 @@ public class FlowLayout extends ViewGroup {
 
 	private int mGravity = Gravity.START | Gravity.TOP;
 
+    List<List<View>> mLines = new ArrayList<List<View>>();
+    List<Integer> mLineHeights = new ArrayList<Integer>();
+    List<Integer> mLineMargins = new ArrayList<Integer>();
+
 	public FlowLayout(Context context) {
 		super(context);
 	}
@@ -60,9 +64,9 @@ public class FlowLayout extends ViewGroup {
 	@Override
 	protected void onLayout(boolean changed, int l, int t, int r, int b) {
 
-		List<List<View>> lines = new ArrayList<List<View>>();
-		List<Integer> lineHeights = new ArrayList<Integer>();
-		List<Integer> lineMargins = new ArrayList<Integer>();
+		mLines.clear();
+        mLineHeights.clear();
+        mLineMargins.clear();
 
 		int width = getWidth();
 		int height = getHeight();
@@ -100,9 +104,9 @@ public class FlowLayout extends ViewGroup {
 			int childHeight = child.getMeasuredHeight() + lp.bottomMargin + lp.topMargin;
 
 			if(lineWidth + childWidth > width) {
-				lineHeights.add(lineHeight);
-				lines.add(lineViews);
-				lineMargins.add((int) ((width - lineWidth) * horizontalGravityFactor));
+				mLineHeights.add(lineHeight);
+				mLines.add(lineViews);
+				mLineMargins.add((int) ((width - lineWidth) * horizontalGravityFactor));
 
 				linesSum += lineHeight;
 
@@ -116,9 +120,9 @@ public class FlowLayout extends ViewGroup {
 			lineViews.add(child);
 		}
 
-		lineHeights.add(lineHeight);
-		lines.add(lineViews);
-		lineMargins.add((int) ((width - lineWidth) * horizontalGravityFactor));
+		mLineHeights.add(lineHeight);
+		mLines.add(lineViews);
+		mLineMargins.add((int) ((width - lineWidth) * horizontalGravityFactor));
 
 		linesSum += lineHeight;
 
@@ -135,16 +139,16 @@ public class FlowLayout extends ViewGroup {
 				break;
 		}
 
-		int numLines = lineHeights.size();
+		int numLines = mLines.size();
 
 		int left;
 		int top = 0;
 
 		for(int i = 0; i < numLines; i++) {
 
-			lineHeight = lineHeights.get(i);
-			lineViews = lines.get(i);
-			left = lineMargins.get(i);
+			lineHeight = mLineHeights.get(i);
+			lineViews = mLines.get(i);
+			left = mLineMargins.get(i);
 
 			int children = lineViews.size();
 
