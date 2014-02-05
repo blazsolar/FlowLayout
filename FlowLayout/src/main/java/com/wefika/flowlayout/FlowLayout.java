@@ -237,6 +237,12 @@ public class FlowLayout extends ViewGroup {
 			View child = getChildAt(i);
 
 			if(child.getVisibility() == View.GONE) {
+
+                if(i == childCount - 1) {
+                    width = Math.max(width, lineWidth);
+                    height += lineHeight;
+                }
+
 				continue;
 			}
 
@@ -323,7 +329,7 @@ public class FlowLayout extends ViewGroup {
 		}
 	}
 
-	public class LayoutParams extends MarginLayoutParams {
+	public static class LayoutParams extends MarginLayoutParams {
 
 		public int gravity = -1;
 

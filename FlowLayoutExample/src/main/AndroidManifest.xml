@@ -25,6 +25,10 @@
             android:name="com.wefika.flowlayout.example.AllInOneActivity"
             android:label="@string/activity_all_in_one" />
 
+        <activity
+            android:name=".VisibilityActivity"
+            android:label="@string/activity_visibility" />
+
     </application>
 
 </manifest>

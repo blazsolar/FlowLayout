@@ -28,8 +28,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.wefika.flowlayout.example.R;
-
 public class MainActivity extends ListActivity {
 
     private ExamplesAdapter mAdapter;
@@ -53,7 +51,8 @@ public class MainActivity extends ListActivity {
 
         private Item[] mItems = {
                 new Item<BasicActivity>(R.string.activity_basic, BasicActivity.class),
-                new Item<AllInOneActivity>(R.string.activity_all_in_one, AllInOneActivity.class)
+                new Item<AllInOneActivity>(R.string.activity_all_in_one, AllInOneActivity.class),
+                new Item<VisibilityActivity>(R.string.activity_visibility, VisibilityActivity.class)
         };
 
         private LayoutInflater mInflater;
