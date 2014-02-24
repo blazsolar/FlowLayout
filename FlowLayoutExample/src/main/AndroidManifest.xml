@@ -29,6 +29,9 @@
             android:name=".VisibilityActivity"
             android:label="@string/activity_visibility" />
 
+        <activity android:name=".CardsLibActivity"
+                  android:label="@string/activity_cards_lib" />
+
     </application>
 
 </manifest>

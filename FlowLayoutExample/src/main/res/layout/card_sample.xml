@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <!--
   ~ Copyright 2014 Blaž Šolar
   ~
@@ -15,13 +16,9 @@
   ~ limitations under the License.
   -->
 
-<resources>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:text="Some text">
 
-    <string name="app_name">FlowLayout Example</string>
-
-    <string name="activity_basic">Basic example</string>
-    <string name="activity_all_in_one">All in one example</string>
-    <string name="activity_visibility">Visibility</string>
-    <string name="activity_cards_lib">Cards lib example</string>
-
-</resources>
+</TextView>

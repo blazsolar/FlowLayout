@@ -52,7 +52,8 @@ public class MainActivity extends ListActivity {
         private Item[] mItems = {
                 new Item<BasicActivity>(R.string.activity_basic, BasicActivity.class),
                 new Item<AllInOneActivity>(R.string.activity_all_in_one, AllInOneActivity.class),
-                new Item<VisibilityActivity>(R.string.activity_visibility, VisibilityActivity.class)
+                new Item<VisibilityActivity>(R.string.activity_visibility, VisibilityActivity.class),
+                new Item<CardsLibActivity>(R.string.activity_cards_lib, CardsLibActivity.class)
         };
 
         private LayoutInflater mInflater;

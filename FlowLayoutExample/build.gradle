@@ -34,6 +34,8 @@ android {
 }
 
 dependencies {
-    compile 'com.wefika:flowlayout:0.3.2-SNAPSHOT'
-//    compile project(':FlowLayout')
+//    compile 'com.wefika:flowlayout:0.3.2-SNAPSHOT'
+    compile project(':FlowLayout')
+
+    compile 'com.github.gabrielemariotti.cards:library:1.3.0'
 }
