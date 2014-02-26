@@ -39,7 +39,7 @@ public class VisibilityActivity extends Activity {
 
     public void addItem(View view) {
 
-        int color = getResources().getColor(android.R.color.holo_blue_dark);
+        int color = getResources().getColor(R.color.holo_blue_dark);
 
         View newView = new View(this);
         newView.setBackgroundColor(color);

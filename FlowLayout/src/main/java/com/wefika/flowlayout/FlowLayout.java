@@ -16,8 +16,10 @@
 
 package com.wefika.flowlayout;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.os.Build;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.View;
@@ -31,13 +33,14 @@ import java.util.List;
  * Date: 5/6/13
  * Time: 8:17 PM
  */
+@TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
 public class FlowLayout extends ViewGroup {
 
-	private int mGravity = Gravity.START | Gravity.TOP;
+	private int mGravity = (isIcs() ? Gravity.START : Gravity.LEFT) | Gravity.TOP;
 
-    List<List<View>> mLines = new ArrayList<List<View>>();
-    List<Integer> mLineHeights = new ArrayList<Integer>();
-    List<Integer> mLineMargins = new ArrayList<Integer>();
+    private final List<List<View>> mLines = new ArrayList<List<View>>();
+    private final List<Integer> mLineHeights = new ArrayList<Integer>();
+    private final List<Integer> mLineMargins = new ArrayList<Integer>();
 
 	public FlowLayout(Context context) {
 		super(context);
@@ -314,10 +317,11 @@ public class FlowLayout extends ViewGroup {
 		return new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
 	}
 
-	public void setGravity(int gravity) {
+	@TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
+    public void setGravity(int gravity) {
 		if(mGravity != gravity) {
 			if((gravity & Gravity.RELATIVE_HORIZONTAL_GRAVITY_MASK) == 0) {
-				gravity |= Gravity.START;
+				gravity |= isIcs() ? Gravity.START : Gravity.LEFT;
 			}
 
 			if((gravity & Gravity.VERTICAL_GRAVITY_MASK) == 0) {
@@ -352,5 +356,9 @@ public class FlowLayout extends ViewGroup {
 		}
 
 	}
+
+    public static boolean isIcs() {
+        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH;
+    }
 
 }

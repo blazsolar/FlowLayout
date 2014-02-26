@@ -20,7 +20,7 @@ android {
     buildToolsVersion "19.0.1"
 
     defaultConfig {
-        minSdkVersion 14
+        minSdkVersion 9
         targetSdkVersion 19
         versionCode 1
         versionName "1.0"
@@ -34,6 +34,6 @@ android {
 }
 
 dependencies {
-    compile 'com.wefika:flowlayout:0.3.2-SNAPSHOT'
-//    compile project(':FlowLayout')
+//    compile 'com.wefika:flowlayout:0.3.2-SNAPSHOT'
+    compile project(':FlowLayout')
 }
