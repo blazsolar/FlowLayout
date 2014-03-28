@@ -258,7 +258,7 @@ public class FlowLayout extends ViewGroup {
 			int childHeightSize = sizeHeight;
 
 			if(lp.width == LayoutParams.MATCH_PARENT) {
-				childWidthMode = MeasureSpec.EXACTLY;
+				childWidthMode = MeasureSpec.EXACTLY    ;
 				childWidthSize -= lp.leftMargin + lp.rightMargin;
 			} else if(lp.width >= 0) {
 				childWidthMode = MeasureSpec.EXACTLY;
@@ -268,7 +268,10 @@ public class FlowLayout extends ViewGroup {
 			if(lp.height >= 0) {
 				childHeightMode = MeasureSpec.EXACTLY;
 				childHeightSize = lp.height;
-			}
+			} else if (modeHeight == MeasureSpec.UNSPECIFIED) {
+                childHeightMode = MeasureSpec.UNSPECIFIED;
+                childHeightSize = 0;
+            }
 
 			child.measure(
 					MeasureSpec.makeMeasureSpec(childWidthSize, childWidthMode),

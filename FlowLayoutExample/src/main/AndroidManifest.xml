@@ -29,6 +29,10 @@
             android:name=".VisibilityActivity"
             android:label="@string/activity_visibility" />
 
+        <activity
+            android:name=".ScrollActivity"
+            android:label="@string/activity_scroll" />
+
     </application>
 
 </manifest>

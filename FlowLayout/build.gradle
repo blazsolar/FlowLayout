@@ -3,7 +3,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:0.7.+'
+        classpath 'com.android.tools.build:gradle:0.9.+'
     }
 }
 apply plugin: 'android-library'
@@ -23,13 +23,11 @@ android {
         versionName project.VERSION_NAME
     }
 
-    release {
-        runProguard false
+    buildTypes {
+        release {
+            runProguard false
+        }
     }
-}
-
-dependencies {
-    instrumentTestCompile 'com.jayway.android.robotium:robotium-solo:4.2'
 }
 
 apply from: '../maven_push.gradle'
