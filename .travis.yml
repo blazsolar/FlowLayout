@@ -29,4 +29,4 @@ before_script:
 - adb wait-for-device
 - adb shell input keyevent 82 &
 script:
-- ./gradlew connectedInstrumentTest
+- TERM=dumb ./gradlew connectedInstrumentTest --stacktrace  -PnexusUsername="${SONATYPE_USERNAME}" -PnexusPassword="${SONATYPE_PASSWORD}"
