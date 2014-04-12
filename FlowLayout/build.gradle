@@ -12,6 +12,10 @@ repositories {
     mavenCentral()
 }
 
+dependencies {
+    compile 'com.intellij:annotations:12.+'
+}
+
 android {
     compileSdkVersion 19
     buildToolsVersion "19.0.3"

@@ -64,6 +64,102 @@ public class FlowLayout extends ViewGroup {
 		a.recycle();
 	}
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+
+        int sizeWidth = MeasureSpec.getSize(widthMeasureSpec);
+        int sizeHeight = MeasureSpec.getSize(heightMeasureSpec);
+
+        int modeWidth = MeasureSpec.getMode(widthMeasureSpec);
+        int modeHeight = MeasureSpec.getMode(heightMeasureSpec);
+
+        int width = 0;
+        int height = 0;
+
+        int lineWidth = 0;
+        int lineHeight = 0;
+
+        int childCount = getChildCount();
+
+        for(int i = 0; i < childCount; i++) {
+
+            View child = getChildAt(i);
+
+            if(child.getVisibility() == View.GONE) {
+
+                if(i == childCount - 1) {
+                    width = Math.max(width, lineWidth);
+                    height += lineHeight;
+                }
+
+                continue;
+            }
+
+            measureChildWithMargins(child, widthMeasureSpec, lineWidth, heightMeasureSpec, height);
+
+            LayoutParams lp = (LayoutParams) child.getLayoutParams();
+
+            int childWidthMode = MeasureSpec.AT_MOST;
+            int childWidthSize = sizeWidth;
+
+            int childHeightMode = MeasureSpec.AT_MOST;
+            int childHeightSize = sizeHeight;
+
+            if(lp.width == LayoutParams.MATCH_PARENT) {
+                childWidthMode = MeasureSpec.EXACTLY    ;
+                childWidthSize -= lp.leftMargin + lp.rightMargin;
+            } else if(lp.width >= 0) {
+                childWidthMode = MeasureSpec.EXACTLY;
+                childWidthSize = lp.width;
+            }
+
+            if(lp.height >= 0) {
+                childHeightMode = MeasureSpec.EXACTLY;
+                childHeightSize = lp.height;
+            } else if (modeHeight == MeasureSpec.UNSPECIFIED) {
+                childHeightMode = MeasureSpec.UNSPECIFIED;
+                childHeightSize = 0;
+            }
+
+            child.measure(
+                    MeasureSpec.makeMeasureSpec(childWidthSize, childWidthMode),
+                    MeasureSpec.makeMeasureSpec(childHeightSize, childHeightMode)
+            );
+
+            int childWidth = child.getMeasuredWidth() + lp.leftMargin + lp.rightMargin;
+
+            if(lineWidth + childWidth > sizeWidth) {
+
+                width = Math.max(width, lineWidth);
+                lineWidth = childWidth;
+
+                height += lineHeight;
+                lineHeight = Math.max(lineHeight, child.getMeasuredHeight() + lp.topMargin + lp.bottomMargin);
+
+            } else {
+                lineWidth += childWidth;
+                lineHeight = Math.max(lineHeight, child.getMeasuredHeight() + lp.topMargin + lp.bottomMargin);
+            }
+
+            if(i == childCount - 1) {
+                width = Math.max(width, lineWidth);
+                height += lineHeight;
+            }
+
+        }
+
+        setMeasuredDimension(
+                (modeWidth == MeasureSpec.EXACTLY) ? sizeWidth : width,
+                (modeHeight == MeasureSpec.EXACTLY) ? sizeHeight : height);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
 	@Override
 	protected void onLayout(boolean changed, int l, int t, int r, int b) {
 
@@ -217,106 +313,27 @@ public class FlowLayout extends ViewGroup {
 
 	}
 
+    /**
+     * {@inheritDoc}
+     */
 	@Override
-	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-		super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-
-		int sizeWidth = MeasureSpec.getSize(widthMeasureSpec);
-		int sizeHeight = MeasureSpec.getSize(heightMeasureSpec);
-
-		int modeWidth = MeasureSpec.getMode(widthMeasureSpec);
-		int modeHeight = MeasureSpec.getMode(heightMeasureSpec);
-
-		int width = 0;
-		int height = 0;
-
-		int lineWidth = 0;
-		int lineHeight = 0;
-
-        int childCount = getChildCount();
-
-		for(int i = 0; i < childCount; i++) {
-
-			View child = getChildAt(i);
-
-			if(child.getVisibility() == View.GONE) {
-
-                if(i == childCount - 1) {
-                    width = Math.max(width, lineWidth);
-                    height += lineHeight;
-                }
-
-				continue;
-			}
-
-			LayoutParams lp = (LayoutParams) child.getLayoutParams();
-
-			int childWidthMode = MeasureSpec.AT_MOST;
-			int childWidthSize = sizeWidth;
-
-			int childHeightMode = MeasureSpec.AT_MOST;
-			int childHeightSize = sizeHeight;
-
-			if(lp.width == LayoutParams.MATCH_PARENT) {
-				childWidthMode = MeasureSpec.EXACTLY    ;
-				childWidthSize -= lp.leftMargin + lp.rightMargin;
-			} else if(lp.width >= 0) {
-				childWidthMode = MeasureSpec.EXACTLY;
-				childWidthSize = lp.width;
-			}
-
-			if(lp.height >= 0) {
-				childHeightMode = MeasureSpec.EXACTLY;
-				childHeightSize = lp.height;
-			} else if (modeHeight == MeasureSpec.UNSPECIFIED) {
-                childHeightMode = MeasureSpec.UNSPECIFIED;
-                childHeightSize = 0;
-            }
-
-			child.measure(
-					MeasureSpec.makeMeasureSpec(childWidthSize, childWidthMode),
-					MeasureSpec.makeMeasureSpec(childHeightSize, childHeightMode)
-			);
-
-			int childWidth = child.getMeasuredWidth() + lp.leftMargin + lp.rightMargin;
-
-			if(lineWidth + childWidth > sizeWidth) {
-
-				width = Math.max(width, lineWidth);
-				lineWidth = childWidth;
-
-				height += lineHeight;
-				lineHeight = Math.max(lineHeight, child.getMeasuredHeight() + lp.topMargin + lp.bottomMargin);
-
-			} else {
-				lineWidth += childWidth;
-				lineHeight = Math.max(lineHeight, child.getMeasuredHeight() + lp.topMargin + lp.bottomMargin);
-			}
-
-            if(i == childCount - 1) {
-                width = Math.max(width, lineWidth);
-                height += lineHeight;
-            }
-
-		}
-
-		setMeasuredDimension(
-				(modeWidth == MeasureSpec.EXACTLY) ? sizeWidth : width,
-				(modeHeight == MeasureSpec.EXACTLY) ? sizeHeight : height);
-	}
-
-	@Override
-	protected ViewGroup.LayoutParams generateLayoutParams(ViewGroup.LayoutParams p) {
+	protected LayoutParams generateLayoutParams(ViewGroup.LayoutParams p) {
 		return new LayoutParams(p);
 	}
 
+    /**
+     * {@inheritDoc}
+     */
 	@Override
-	public ViewGroup.LayoutParams generateLayoutParams(AttributeSet attrs) {
+	public LayoutParams generateLayoutParams(AttributeSet attrs) {
 		return new LayoutParams(getContext(), attrs);
 	}
 
+    /**
+     * {@inheritDoc}
+     */
 	@Override
-	protected ViewGroup.LayoutParams generateDefaultLayoutParams() {
+	protected LayoutParams generateDefaultLayoutParams() {
 		return new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
 	}
 
@@ -360,7 +377,10 @@ public class FlowLayout extends ViewGroup {
 
 	}
 
-    public static boolean isIcs() {
+    /**
+     * @return <code>true</code> if device is running ICS or grater version of Android.
+     */
+    private static boolean isIcs() {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH;
     }
 
