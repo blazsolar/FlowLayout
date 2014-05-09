@@ -1,32 +1,18 @@
-language: java
+language: android
 jdk: oraclejdk7
+
 env:
   matrix:
   - ANDROID_TARGET=android-19  ANDROID_ABI=armeabi-v7a
   global:
   - secure: bt+dy7oGciBNHlsS7HTgnh3Eb2dJu8OdAsVyl3Dz7/cHxMFExwF+r3rpPU18BgWwEr2ceQD0FftwMDCQY9qeu8JLCorqTF/UIs/rSlOh5uewXjRdgTZrcFaFAlfQxOMEN2G7Q48EwxHWkCIMqZUKsRWJ3eu/gougIZnXD114gaM=
   - secure: VP/WFm7NCfba+0w/6SU8bRN4Ujw6qU6dmULeVBB99RrztikLbQMeaOR5FrEL67jk/TYUCzsnndZg/XkOtZoGDFWxNlQQ1jukv3V+/aC947jGtIdfVkoL8u846BnzEPZLPt+4WE9s/UuIU+PI6Lz16N5tIf0+NynrNXhpga/QkUg=
-before_install:
-- sudo apt-get update -qq
-- if [ `uname -m` = x86_64 ]; then sudo apt-get install -qq --force-yes libgd2-xpm
-  ia32-libs ia32-libs-multiarch > /dev/null; fi
-- wget http://dl.google.com/android/android-sdk_r22.3-linux.tgz
-- tar xzf android-sdk_r22.3-linux.tgz
-- export ANDROID_HOME=$PWD/android-sdk-linux
-- export PATH=${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools
-- echo yes | android update sdk --filter platform-tool --no-ui --force --all > /dev/null
-- echo yes | android update sdk --all --filter build-tools-19.0.3 --no-ui --force
-  > /dev/null
-- echo yes | android update sdk --filter android-19 --no-ui --force > /dev/null
-- echo yes | android update sdk --filter sysimg-19 --no-ui --force > /dev/null
-- echo yes | android update sdk --filter extra-android-support --no-ui --force > /dev/null
-- echo yes | android update sdk --filter extra-android-m2repository --no-ui --force > /dev/null
-- echo no | android create avd --force -n test -t $ANDROID_TARGET --abi $ANDROID_ABI
-- emulator -avd test -no-skin -no-audio -no-window &
-install:
-- TERM=dumb ./gradlew assemble --stacktrace  -PnexusUsername="${SONATYPE_USERNAME}" -PnexusPassword="${SONATYPE_PASSWORD}"
+
 before_script:
-- adb wait-for-device
-- adb shell input keyevent 82 &
+  - echo no | android create avd --force -n test -t $ANDROID_TARGET --abi $ANDROID_ABI
+  - emulator -avd test -no-skin -no-audio -no-window &
+  - adb wait-for-device
+  - adb shell input keyevent 82 &
+
 script:
-- TERM=dumb ./gradlew connectedCheck --stacktrace  -PnexusUsername="${SONATYPE_USERNAME}" -PnexusPassword="${SONATYPE_PASSWORD}"
+  - TERM=dumb ./gradlew connectedCheck --stacktrace  -PnexusUsername="${SONATYPE_USERNAME}" -PnexusPassword="${SONATYPE_PASSWORD}"

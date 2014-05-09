@@ -36,9 +36,13 @@ public class FlowLayoutTest extends AndroidTestCase {
 
     public void testGenerateDefaultLayoutParams() throws Exception {
 
-        FlowLayout.LayoutParams params = (FlowLayout.LayoutParams) mLayout.generateDefaultLayoutParams();
+        FlowLayout.LayoutParams params = mLayout.generateDefaultLayoutParams();
         Assert.assertEquals(FlowLayout.LayoutParams.MATCH_PARENT, params.width);
         Assert.assertEquals(FlowLayout.LayoutParams.MATCH_PARENT, params.height);
+
+    }
+
+    public void testGenerateLayoutParams() throws Exception {
 
     }
 }

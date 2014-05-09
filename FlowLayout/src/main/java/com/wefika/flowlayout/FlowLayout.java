@@ -353,6 +353,13 @@ public class FlowLayout extends ViewGroup {
 		}
 	}
 
+    /**
+     * @return <code>true</code> if device is running ICS or grater version of Android.
+     */
+    private static boolean isIcs() {
+        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH;
+    }
+
 	public static class LayoutParams extends MarginLayoutParams {
 
 		public int gravity = -1;
@@ -376,12 +383,5 @@ public class FlowLayout extends ViewGroup {
 		}
 
 	}
-
-    /**
-     * @return <code>true</code> if device is running ICS or grater version of Android.
-     */
-    private static boolean isIcs() {
-        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH;
-    }
 
 }
