@@ -18,6 +18,7 @@ before_install:
   - "android-update-sdk --components='platform-tools,tools' --accept-licenses='.+'"
   - "android-update-sdk --components='build-tools-20.0.0' --accept-licenses='.+'"
   - "android-update-sdk --components='android-19' --accept-licenses='.+'"
+  - "android-update-sdk --components='android-9' --accept-licenses='.+'"
   - "android-update-sdk --components='extra-android-m2repository,extra-google-m2repository' --accept-licenses='.+'"
   - echo no | android create avd --force -n test -t $ANDROID_TARGET --abi $ANDROID_ABI
   - emulator -avd test -no-skin -no-audio -no-window &
