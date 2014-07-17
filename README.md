@@ -3,6 +3,8 @@ FlowLayout
 
 FlowLayout is an opensource Android library that alows developers to easily integrate flow layout into their app. FlowLayout is an layout that display its children in multiple rows depending on their size.
 
+[![Build Status](https://travis-ci.org/blazsolar/FlowLayout.svg?branch=debug)](https://travis-ci.org/blazsolar/FlowLayout)
+
 Dependencies
 ------------
 ### Gradle
