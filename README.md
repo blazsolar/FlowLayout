@@ -7,6 +7,11 @@ FlowLayout is an opensource Android library that alows developers to easily inte
 [![Coverage Status](https://coveralls.io/repos/blazsolar/FlowLayout/badge.png)](https://coveralls.io/r/blazsolar/FlowLayout)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.wefika/flowlayout/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.wefika/flowlayout)
 
+Example
+-------
+![Framed example screenshot](https://raw2.github.com/blazsolar/FlowLayout/master/images/framed_example_screenshot.png)
+Source code with examples is included in repository.
+
 Dependencies
 ------------
 ### Gradle
@@ -40,11 +45,6 @@ Usage
 
 </com.wefika.flowlayout.FlowLayout>
 ```
-
-Example
--------
-![Framed example screenshot](https://raw2.github.com/blazsolar/FlowLayout/master/images/framed_example_screenshot.png)
-Source code with examples is included in repository.
 
 License
 -------
