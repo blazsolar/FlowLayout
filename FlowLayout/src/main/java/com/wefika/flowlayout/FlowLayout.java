@@ -29,6 +29,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * FlowLayout will arrange child elements horizontally one next to another. If there is not enough
+ * space for next view new line will be added.
+ *
  * User: Blaž Šolar
  * Date: 5/6/13
  * Time: 8:17 PM
@@ -56,12 +59,15 @@ public class FlowLayout extends ViewGroup {
 		TypedArray a = context.obtainStyledAttributes(attrs,
 				R.styleable.FlowLayout, defStyle, 0);
 
-		int index = a.getInt(R.styleable.FlowLayout_android_gravity, -1);
-		if(index > 0) {
-			setGravity(index);
-		}
+        try {
+            int index = a.getInt(R.styleable.FlowLayout_android_gravity, -1);
+            if(index > 0) {
+                setGravity(index);
+            }
+        } finally {
+            a.recycle();
+        }
 
-		a.recycle();
 	}
 
 	@Override
@@ -227,9 +233,11 @@ public class FlowLayout extends ViewGroup {
 		int modeWidth = MeasureSpec.getMode(widthMeasureSpec);
 		int modeHeight = MeasureSpec.getMode(heightMeasureSpec);
 
+        // summed width/height of child view
 		int width = 0;
 		int height = 0;
 
+        // width height per line
 		int lineWidth = 0;
 		int lineHeight = 0;
 
@@ -241,6 +249,7 @@ public class FlowLayout extends ViewGroup {
 
 			if(child.getVisibility() == View.GONE) {
 
+                // TODO this shouldn't be here
                 if(i == childCount - 1) {
                     width = Math.max(width, lineWidth);
                     height += lineHeight;
