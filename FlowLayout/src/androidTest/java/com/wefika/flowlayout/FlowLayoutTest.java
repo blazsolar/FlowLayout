@@ -16,25 +16,43 @@
 
 package com.wefika.flowlayout;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.content.res.TypedArray;
+import android.os.Build;
+import android.test.ActivityInstrumentationTestCase2;
+import android.test.ActivityUnitTestCase;
 import android.test.AndroidTestCase;
+import android.util.AttributeSet;
+import android.util.Log;
+import android.util.Xml;
+import android.view.Gravity;
+import android.view.ViewGroup;
 
 import junit.framework.Assert;
+
+import org.xmlpull.v1.XmlPullParser;
 
 /**
  * Created by Blaž Šolar on 01/04/14.
  */
-public class FlowLayoutTest extends AndroidTestCase {
+public class FlowLayoutTest extends ActivityUnitTestCase<FlowLayoutStubActivity> {
 
     private FlowLayout mLayout;
+
+    public FlowLayoutTest() {
+        super(FlowLayoutStubActivity.class);
+    }
 
     @Override
     public void setUp() throws Exception {
         super.setUp();
 
-        mLayout = new FlowLayout(getContext());
     }
 
     public void testGenerateDefaultLayoutParams() throws Exception {
+
+        init();
 
         FlowLayout.LayoutParams params = mLayout.generateDefaultLayoutParams();
         Assert.assertEquals(FlowLayout.LayoutParams.MATCH_PARENT, params.width);
@@ -44,5 +62,52 @@ public class FlowLayoutTest extends AndroidTestCase {
 
     public void testGenerateLayoutParams() throws Exception {
 
+        init();
+
+        ViewGroup.LayoutParams params = new FlowLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+
+        FlowLayout.LayoutParams generated = mLayout.generateLayoutParams(params);
+
+        assertEquals(-1, generated.gravity);
+        assertEquals(FlowLayout.LayoutParams.MATCH_PARENT, generated.width);
+        assertEquals(FlowLayout.LayoutParams.MATCH_PARENT, generated.height);
+
+    }
+
+    public void testGravity() throws Exception {
+
+        init();
+
+        mLayout.setGravity(Gravity.BOTTOM | Gravity.RIGHT);
+
+        assertEquals(Gravity.BOTTOM | Gravity.RIGHT, mLayout.getGravity());
+
+    }
+
+    public void testGravityDefault() throws Exception {
+
+        init();
+
+        mLayout.setGravity(Gravity.BOTTOM | Gravity.RIGHT);
+
+        mLayout.setGravity(0);
+
+        int horizontal = isIcs() ? Gravity.START : Gravity.LEFT;
+
+        assertEquals(horizontal | Gravity.TOP, mLayout.getGravity());
+
+    }
+
+    private void init() {
+
+        Intent intent = new Intent(getInstrumentation().getTargetContext(), FlowLayoutStubActivity.class);
+        startActivity(intent, null, null);
+
+        mLayout = (FlowLayout) getActivity().findViewById(com.wefika.flowlayout.test.R.id.layout);
+
+    }
+
+    private static boolean isIcs() {
+        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH;
     }
 }

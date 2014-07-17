@@ -46,7 +46,7 @@ public class FlowLayout extends ViewGroup {
     private final List<Integer> mLineMargins = new ArrayList<Integer>();
 
 	public FlowLayout(Context context) {
-		super(context);
+		this(context, null);
 	}
 
 	public FlowLayout(Context context, AttributeSet attrs) {
@@ -320,7 +320,7 @@ public class FlowLayout extends ViewGroup {
 	}
 
 	@Override
-	protected ViewGroup.LayoutParams generateLayoutParams(ViewGroup.LayoutParams p) {
+	protected LayoutParams generateLayoutParams(ViewGroup.LayoutParams p) {
 		return new LayoutParams(p);
 	}
 
@@ -356,6 +356,10 @@ public class FlowLayout extends ViewGroup {
 		}
 	}
 
+    public int getGravity() {
+        return mGravity;
+    }
+
     /**
      * @return <code>true</code> if device is running ICS or grater version of Android.
      */
@@ -372,9 +376,11 @@ public class FlowLayout extends ViewGroup {
 
 			TypedArray a = c.obtainStyledAttributes(attrs, R.styleable.FlowLayout_Layout);
 
-			gravity = a.getInt(R.styleable.FlowLayout_Layout_android_layout_gravity, -1);
-
-			a.recycle();
+            try {
+                gravity = a.getInt(R.styleable.FlowLayout_Layout_android_layout_gravity, -1);
+            } finally {
+                a.recycle();
+            }
 		}
 
 		public LayoutParams(int width, int height) {
