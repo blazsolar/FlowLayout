@@ -5,9 +5,6 @@ env:
   matrix:
   - ANDROID_TARGET=android-19  ANDROID_ABI=armeabi-v7a
   - ANDROID_TARGET=android-9  ANDROID_ABI=armeabi
-  global:
-  - secure: bt+dy7oGciBNHlsS7HTgnh3Eb2dJu8OdAsVyl3Dz7/cHxMFExwF+r3rpPU18BgWwEr2ceQD0FftwMDCQY9qeu8JLCorqTF/UIs/rSlOh5uewXjRdgTZrcFaFAlfQxOMEN2G7Q48EwxHWkCIMqZUKsRWJ3eu/gougIZnXD114gaM=
-  - secure: VP/WFm7NCfba+0w/6SU8bRN4Ujw6qU6dmULeVBB99RrztikLbQMeaOR5FrEL67jk/TYUCzsnndZg/XkOtZoGDFWxNlQQ1jukv3V+/aC947jGtIdfVkoL8u846BnzEPZLPt+4WE9s/UuIU+PI6Lz16N5tIf0+NynrNXhpga/QkUg=
 
 before_install:
   # workaround for travis-ci/travis-ci#2279
@@ -26,6 +23,3 @@ before_install:
 before_script:
   - adb wait-for-device
   - adb shell input keyevent 82 &
-
-script:
-  - TERM=dumb ./gradlew connectedCheck --stacktrace  -PnexusUsername="${SONATYPE_USERNAME}" -PnexusPassword="${SONATYPE_PASSWORD}"

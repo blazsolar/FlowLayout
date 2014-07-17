@@ -12,6 +12,7 @@ if (isReleaseBuild()) {
 
 afterEvaluate { project ->
     uploadArchives {
+
         repositories {
             mavenDeployer {
                 beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
@@ -19,7 +20,10 @@ afterEvaluate { project ->
                 pom.artifactId = POM_ARTIFACT_ID
 
                 repository(url: sonatypeRepositoryUrl) {
-                    authentication(userName: nexusUsername, password: nexusPassword)
+                    authentication(
+                            userName: System.hasProperty("nexusUsername1") ? nexusUsername1 : "",
+                            password: System.hasProperty("nexusPassword") ? nexusPassword : ""
+                    )
                 }
 
                 pom.project {
