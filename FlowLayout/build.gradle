@@ -45,4 +45,8 @@ android {
     }
 }
 
+coveralls {
+    jacocoReportPath = 'build/outputs/reports/coverage/debug/report.xml'
+}
+
 apply from: '../maven_push.gradle'

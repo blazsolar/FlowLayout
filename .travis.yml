@@ -23,3 +23,6 @@ before_install:
 before_script:
   - adb wait-for-device
   - adb shell input keyevent 82 &
+
+after_success:
+  - gradle coveralls
