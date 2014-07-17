@@ -20,9 +20,17 @@ android {
     }
 
     buildTypes {
+        debug {
+            testCoverageEnabled = true
+        }
+
         release {
             runProguard false
         }
+    }
+
+    jacoco {
+        version = '0.6.2.201302030002'
     }
 }
 

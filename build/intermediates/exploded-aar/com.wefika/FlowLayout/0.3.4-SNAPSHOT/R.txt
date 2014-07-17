@@ -1,0 +1,4 @@
+int[] styleable FlowLayout { 0x010100af }
+int styleable FlowLayout_android_gravity 0
+int[] styleable FlowLayout_Layout { 0x010100b3 }
+int styleable FlowLayout_Layout_android_layout_gravity 0
