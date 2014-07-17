@@ -4,6 +4,7 @@ jdk: oraclejdk7
 env:
   matrix:
   - ANDROID_TARGET=android-19  ANDROID_ABI=armeabi-v7a
+  - ANDROID_TARGET=android-9  ANDROID_ABI=armeabi-v7a
   global:
   - secure: bt+dy7oGciBNHlsS7HTgnh3Eb2dJu8OdAsVyl3Dz7/cHxMFExwF+r3rpPU18BgWwEr2ceQD0FftwMDCQY9qeu8JLCorqTF/UIs/rSlOh5uewXjRdgTZrcFaFAlfQxOMEN2G7Q48EwxHWkCIMqZUKsRWJ3eu/gougIZnXD114gaM=
   - secure: VP/WFm7NCfba+0w/6SU8bRN4Ujw6qU6dmULeVBB99RrztikLbQMeaOR5FrEL67jk/TYUCzsnndZg/XkOtZoGDFWxNlQQ1jukv3V+/aC947jGtIdfVkoL8u846BnzEPZLPt+4WE9s/UuIU+PI6Lz16N5tIf0+NynrNXhpga/QkUg=
@@ -22,8 +23,6 @@ before_install:
   - emulator -avd test -no-skin -no-audio -no-window &
 
 before_script:
-  - echo no | android create avd --force -n test -t $ANDROID_TARGET --abi $ANDROID_ABI
-  - emulator -avd test -no-skin -no-audio -no-window &
   - adb wait-for-device
   - adb shell input keyevent 82 &
 
