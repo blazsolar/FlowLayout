@@ -1,23 +1,12 @@
-buildscript {
-    repositories {
-        mavenCentral()
-    }
-    dependencies {
-        classpath 'com.android.tools.build:gradle:0.9.+'
-    }
-}
-apply plugin: 'android'
+apply plugin: 'com.android.application'
 
 repositories {
     mavenCentral()
-    maven {
-        url 'https://oss.sonatype.org/content/repositories/snapshots/'
-    }
 }
 
 android {
     compileSdkVersion 19
-    buildToolsVersion "19.0.3"
+    buildToolsVersion "20.0.0"
 
     defaultConfig {
         minSdkVersion 9
@@ -35,6 +24,5 @@ android {
 }
 
 dependencies {
-//    compile 'com.wefika:flowlayout:0.3.4-SNAPSHOT'
     compile project(':FlowLayout')
 }
