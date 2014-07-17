@@ -4,6 +4,7 @@ FlowLayout
 FlowLayout is an opensource Android library that alows developers to easily integrate flow layout into their app. FlowLayout is an layout that display its children in multiple rows depending on their size.
 
 [![Build Status](https://travis-ci.org/blazsolar/FlowLayout.svg?branch=debug)](https://travis-ci.org/blazsolar/FlowLayout)
+[![Coverage Status](https://coveralls.io/repos/blazsolar/FlowLayout/badge.png)](https://coveralls.io/r/blazsolar/FlowLayout)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.wefika/flowlayout/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.wefika/flowlayout)
 
 Dependencies
