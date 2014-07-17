@@ -24,7 +24,7 @@ compile "com.wefika:flowlayout:<version>"
 <dependency>
     <groupId>com.wefika</groupId>
     <artifactId>flowlayout</artifactId>
-    <version><version></version>
+    <version>[version]</version>
 </dependency>
 ```
 
