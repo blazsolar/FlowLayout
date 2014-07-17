@@ -1,4 +1,15 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath 'org.kt3k.gradle.plugin:coveralls-gradle-plugin:0.6.1'
+    }
+}
+
 apply plugin: 'com.android.library'
+apply plugin: 'coveralls'
 
 repositories {
     mavenCentral()
