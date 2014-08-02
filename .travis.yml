@@ -14,18 +14,8 @@ android:
     - extra-google-m2repository
 
 before_install:
-  # Coveralls 
+  # Coveralls
   - git clone git://github.com/blazsolar/coveralls-gradle-plugin.git coveralls-gradle-plugin
-  # workaround for travis-ci/travis-ci#2279
-#  - 'sudo mv /usr/local/android-sdk/tools/android-* /usr/local/bin'
-  # Accept all licenses (workaround for travis-ci/travis-ci#2466)
-  # Upgrade 'platform-tools' before 'tools' (workaround for travis-ci/travis-ci#2470)
-  # Run dinstinct 'android update sdk' commands
-#  - "android-update-sdk --components='platform-tools,tools' --accept-licenses='.+'"
-#  - "android-update-sdk --components='build-tools-20.0.0' --accept-licenses='.+'"
-#  - "android-update-sdk --components='android-19' --accept-licenses='.+'"
-#  - "android-update-sdk --components='android-9' --accept-licenses='.+'"
-#  - "android-update-sdk --components='extra-android-m2repository,extra-google-m2repository' --accept-licenses='.+'"
   # Emulator
   - echo no | android create avd --force -n test -t $ANDROID_TARGET --abi $ANDROID_ABI
   - emulator -avd test -no-skin -no-audio -no-window &
