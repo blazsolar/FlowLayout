@@ -14,7 +14,8 @@ android:
     - extra-google-m2repository
 
 before_install:
-#  - git clone git://github.com/blazsolar/coveralls-gradle-plugin.git coveralls-gradle-plugin
+  # Coveralls 
+  - git clone git://github.com/blazsolar/coveralls-gradle-plugin.git coveralls-gradle-plugin
   # workaround for travis-ci/travis-ci#2279
 #  - 'sudo mv /usr/local/android-sdk/tools/android-* /usr/local/bin'
   # Accept all licenses (workaround for travis-ci/travis-ci#2466)
