@@ -6,18 +6,26 @@ env:
   - ANDROID_TARGET=android-19  ANDROID_ABI=armeabi-v7a
   - ANDROID_TARGET=android-9  ANDROID_ABI=armeabi
 
+android:
+  components:
+    - build-tools-20.0.0
+    - android-9
+    - extra-android-m2repository
+    - extra-google-m2repository
+
 before_install:
-  - git clone git://github.com/blazsolar/coveralls-gradle-plugin.git coveralls-gradle-plugin
+#  - git clone git://github.com/blazsolar/coveralls-gradle-plugin.git coveralls-gradle-plugin
   # workaround for travis-ci/travis-ci#2279
-  - 'sudo mv /usr/local/android-sdk/tools/android-* /usr/local/bin'
+#  - 'sudo mv /usr/local/android-sdk/tools/android-* /usr/local/bin'
   # Accept all licenses (workaround for travis-ci/travis-ci#2466)
   # Upgrade 'platform-tools' before 'tools' (workaround for travis-ci/travis-ci#2470)
   # Run dinstinct 'android update sdk' commands
-  - "android-update-sdk --components='platform-tools,tools' --accept-licenses='.+'"
-  - "android-update-sdk --components='build-tools-20.0.0' --accept-licenses='.+'"
-  - "android-update-sdk --components='android-19' --accept-licenses='.+'"
-  - "android-update-sdk --components='android-9' --accept-licenses='.+'"
-  - "android-update-sdk --components='extra-android-m2repository,extra-google-m2repository' --accept-licenses='.+'"
+#  - "android-update-sdk --components='platform-tools,tools' --accept-licenses='.+'"
+#  - "android-update-sdk --components='build-tools-20.0.0' --accept-licenses='.+'"
+#  - "android-update-sdk --components='android-19' --accept-licenses='.+'"
+#  - "android-update-sdk --components='android-9' --accept-licenses='.+'"
+#  - "android-update-sdk --components='extra-android-m2repository,extra-google-m2repository' --accept-licenses='.+'"
+  # Emulator
   - echo no | android create avd --force -n test -t $ANDROID_TARGET --abi $ANDROID_ABI
   - emulator -avd test -no-skin -no-audio -no-window &
 
