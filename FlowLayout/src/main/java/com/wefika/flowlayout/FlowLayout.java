@@ -84,7 +84,7 @@ public class FlowLayout extends ViewGroup {
         int modeHeight = MeasureSpec.getMode(heightMeasureSpec);
 
         int width = 0;
-        int height = 0;
+        int height = getPaddingTop() + getPaddingBottom();
 
         int lineWidth = 0;
         int lineHeight = 0;
@@ -176,7 +176,7 @@ public class FlowLayout extends ViewGroup {
 		int width = getWidth();
 		int height = getHeight();
 
-		int linesSum = 0;
+		int linesSum = getPaddingTop();
 
 		int lineWidth = 0;
 		int lineHeight = 0;
@@ -247,7 +247,7 @@ public class FlowLayout extends ViewGroup {
 		int numLines = mLines.size();
 
 		int left;
-		int top = 0;
+		int top = getPaddingTop();
 
 		for(int i = 0; i < numLines; i++) {
 
