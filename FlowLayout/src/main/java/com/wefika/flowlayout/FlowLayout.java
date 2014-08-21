@@ -77,7 +77,7 @@ public class FlowLayout extends ViewGroup {
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 
-        int sizeWidth = MeasureSpec.getSize(widthMeasureSpec);
+        int sizeWidth = MeasureSpec.getSize(widthMeasureSpec) - getPaddingLeft() - getPaddingRight();
         int sizeHeight = MeasureSpec.getSize(heightMeasureSpec);
 
         int modeWidth = MeasureSpec.getMode(widthMeasureSpec);
@@ -158,6 +158,8 @@ public class FlowLayout extends ViewGroup {
 
         }
 
+        width += getPaddingLeft() + getPaddingRight();
+
         setMeasuredDimension(
                 (modeWidth == MeasureSpec.EXACTLY) ? sizeWidth : width,
                 (modeHeight == MeasureSpec.EXACTLY) ? sizeHeight : height);
@@ -182,10 +184,11 @@ public class FlowLayout extends ViewGroup {
 		int lineHeight = 0;
 		List<View> lineViews = new ArrayList<View>();
 
-		float horizontalGravityFactor = 0;
+		float horizontalGravityFactor;
 		switch ((mGravity & Gravity.HORIZONTAL_GRAVITY_MASK)) {
 			case Gravity.LEFT:
 			default:
+                horizontalGravityFactor = 0;
 				break;
 			case Gravity.CENTER_HORIZONTAL:
 				horizontalGravityFactor = .5f;
@@ -211,7 +214,7 @@ public class FlowLayout extends ViewGroup {
 			if(lineWidth + childWidth > width) {
 				mLineHeights.add(lineHeight);
 				mLines.add(lineViews);
-				mLineMargins.add((int) ((width - lineWidth) * horizontalGravityFactor));
+				mLineMargins.add((int) ((width - lineWidth) * horizontalGravityFactor) + getPaddingLeft());
 
 				linesSum += lineHeight;
 
@@ -227,7 +230,7 @@ public class FlowLayout extends ViewGroup {
 
 		mLineHeights.add(lineHeight);
 		mLines.add(lineViews);
-		mLineMargins.add((int) ((width - lineWidth) * horizontalGravityFactor));
+		mLineMargins.add((int) ((width - lineWidth) * horizontalGravityFactor) + getPaddingLeft());
 
 		linesSum += lineHeight;
 
