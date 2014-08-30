@@ -3,7 +3,7 @@ jdk: oraclejdk7
 
 env:
   matrix:
-  - ANDROID_TARGET=android-19  ANDROID_ABI=armeabi-v7a
+  - ANDROID_TARGET=android-20  ANDROID_ABI=armeabi-v7a
   - ANDROID_TARGET=android-9  ANDROID_ABI=armeabi
 
 android:
@@ -14,20 +14,13 @@ android:
     - extra-google-m2repository
 
 before_install:
-  # Coveralls
-  - git clone git://github.com/blazsolar/coveralls-gradle-plugin.git coveralls-gradle-plugin
   # Emulator
   - echo no | android create avd --force -n test -t $ANDROID_TARGET --abi $ANDROID_ABI
   - emulator -avd test -no-skin -no-audio -no-window &
-
-install:
-  - cd coveralls-gradle-plugin
-  - gradle install
-  - cd ..
 
 before_script:
   - adb wait-for-device
   - adb shell input keyevent 82 &
 
 after_success:
-  - gradle coveralls
+  - ./gradlew coveralls

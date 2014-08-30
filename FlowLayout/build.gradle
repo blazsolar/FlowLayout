@@ -2,15 +2,17 @@ buildscript {
     repositories {
         mavenCentral()
         mavenLocal()
+        maven { url "http://dl.bintray.com/blazsolar/gradle-plugins" }
     }
 
     dependencies {
         classpath 'org.kt3k.gradle.plugin:coveralls-gradle-plugin:0.6.2-SNAPSHOT'
+        classpath "com.github.blazsolar.gradle:coveralls-gradle-plugin:2.0.1"
     }
 }
 
 apply plugin: 'com.android.library'
-apply plugin: 'coveralls'
+apply plugin: 'com.github.blazsolar.coveralls'
 
 repositories {
     mavenCentral()
@@ -21,12 +23,12 @@ dependencies {
 }
 
 android {
-    compileSdkVersion 19
+    compileSdkVersion 20
     buildToolsVersion "20.0.0"
 
     defaultConfig {
         minSdkVersion 9
-        targetSdkVersion 19
+        targetSdkVersion 20
         versionCode Integer.parseInt(project.VERSION_CODE)
         versionName project.VERSION_NAME
     }
