@@ -6,7 +6,6 @@ buildscript {
     }
 
     dependencies {
-        classpath 'org.kt3k.gradle.plugin:coveralls-gradle-plugin:0.6.2-SNAPSHOT'
         classpath "com.github.blazsolar.gradle:coveralls-gradle-plugin:2.0.1"
     }
 }
