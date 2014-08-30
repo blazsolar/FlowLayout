@@ -46,17 +46,17 @@
             android:layout_margin="10dp"
             android:text="adipisicing" />
 
-        <!--<Button-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_margin="10dp"-->
-            <!--android:text="elit, sed do eiusmod" />-->
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="elit, sed do eiusmod" />
 
-        <!--<Button-->
-            <!--android:layout_width="200dp"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_margin="10dp"-->
-            <!--android:text="tempor incididunt" />-->
+        <Button
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="tempor incididunt" />
 
     </com.wefika.flowlayout.FlowLayout>
 

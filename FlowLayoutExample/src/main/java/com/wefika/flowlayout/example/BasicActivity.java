@@ -1,5 +1,5 @@
 /*
- * Copyright 2014 Blaž Šolar
+ * Copyright 2014 Blaz Solar
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,7 +20,7 @@ import android.app.Activity;
 import android.os.Bundle;
 
 /**
- * Created by Blaž Šolar on 18/01/14.
+ * Created by Blaz Solar on 18/01/14.
  */
 public class BasicActivity extends Activity {
 

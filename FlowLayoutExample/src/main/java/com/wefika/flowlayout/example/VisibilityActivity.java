@@ -1,5 +1,5 @@
 /*
- * Copyright 2014 Blaž Šolar
+ * Copyright 2014 Blaz Solar
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,7 +23,7 @@ import android.view.View;
 import com.wefika.flowlayout.FlowLayout;
 
 /**
- * Created by Blaž Šolar on 05/02/14.
+ * Created by Blaz Solar on 05/02/14.
  */
 public class VisibilityActivity extends Activity {
 

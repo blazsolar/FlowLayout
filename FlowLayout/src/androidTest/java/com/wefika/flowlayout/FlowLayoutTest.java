@@ -1,5 +1,5 @@
 /*
- * Copyright 2014 Blaž Šolar
+ * Copyright 2014 Blaz Solar
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -34,7 +34,7 @@ import junit.framework.Assert;
 import org.xmlpull.v1.XmlPullParser;
 
 /**
- * Created by Blaž Šolar on 01/04/14.
+ * Created by Blaz Solar on 01/04/14.
  */
 public class FlowLayoutTest extends ActivityUnitTestCase<FlowLayoutStubActivity> {
 

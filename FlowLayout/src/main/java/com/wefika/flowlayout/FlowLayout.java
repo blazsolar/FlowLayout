@@ -1,5 +1,5 @@
 /*
- * Copyright 2013 Blaž Šolar
+ * Copyright 2013 Blaz Solar
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,7 +32,7 @@ import java.util.List;
  * FlowLayout will arrange child elements horizontally one next to another. If there is not enough
  * space for next view new line will be added.
  *
- * User: Blaž Šolar
+ * User: Blaz Solar
  * Date: 5/6/13
  * Time: 8:17 PM
  */
