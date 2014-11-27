@@ -8,7 +8,7 @@ FlowLayout is an opensource Android library that alows developers to easily inte
 
 Example
 -------
-![Framed example screenshot](https://raw2.github.com/blazsolar/FlowLayout/master/images/framed_example_screenshot.png)
+![Framed example screenshot](https://raw.githubusercontent.com/blazsolar/FlowLayout/develop/images/framed_example_screenshot.png)
 Source code with examples is included in repository.
 
 Dependencies
