@@ -5,6 +5,7 @@ FlowLayout is an opensource Android library that alows developers to easily inte
 
 [![Build Status](https://api.travis-ci.org/blazsolar/FlowLayout.svg?branch=develop)](https://travis-ci.org/blazsolar/FlowLayout)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.wefika/flowlayout/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.wefika/flowlayout)
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-FlowLayout-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/1216)
 
 Example
 -------
