@@ -14,19 +14,19 @@
  * limitations under the License.
  */
 
-package com.wefika.flowlayout.example;
+package com.wefika.flowlayout;
 
 import android.app.Activity;
 import android.os.Bundle;
 
 /**
- * Created by Blaz Solar on 28/03/14.
+ * Created by Blaz Solar on 17/07/14.
  */
-public class ScrollActivity extends Activity {
+public class FlowLayoutStubActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_scroll);
+        setContentView(com.wefika.flowlayout.test.R.layout.stub_layout);
     }
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2014 Blaz Solar
+ * Copyright 2014 Blaž Šolar
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,19 +14,16 @@
  * limitations under the License.
  */
 
-package com.wefika.flowlayout.example;
+package com.wefika.flowlayout.test;
 
-import android.app.Activity;
-import android.os.Bundle;
+import android.app.Application;
+import android.test.ApplicationTestCase;
 
 /**
- * Created by Blaz Solar on 28/03/14.
+ * <a href="http://d.android.com/tools/testing/testing_android.html">Testing Fundamentals</a>
  */
-public class ScrollActivity extends Activity {
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_scroll);
+public class ApplicationTest extends ApplicationTestCase<Application> {
+    public ApplicationTest() {
+        super(Application.class);
     }
 }

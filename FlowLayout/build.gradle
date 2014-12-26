@@ -1,33 +1,51 @@
 buildscript {
     repositories {
         mavenCentral()
+        mavenLocal()
+        maven { url "http://dl.bintray.com/blazsolar/gradle-plugins" }
     }
+
     dependencies {
-        classpath 'com.android.tools.build:gradle:0.9.+'
+        classpath "com.github.blazsolar.gradle:coveralls-gradle-plugin:2.0.1"
     }
 }
-apply plugin: 'android-library'
+
+apply plugin: 'com.android.library'
+apply plugin: 'com.github.blazsolar.coveralls'
 
 repositories {
     mavenCentral()
 }
 
+dependencies {
+    compile 'com.intellij:annotations:12.+'
+}
+
 android {
-    compileSdkVersion 19
-    buildToolsVersion "19.0.1"
+    compileSdkVersion 21
+    buildToolsVersion "21.1.2"
 
     defaultConfig {
         minSdkVersion 9
-        targetSdkVersion 19
+        targetSdkVersion 21
         versionCode Integer.parseInt(project.VERSION_CODE)
         versionName project.VERSION_NAME
     }
 
     buildTypes {
+        debug {
+            testCoverageEnabled = true
+        }
+
         release {
-            runProguard false
+            minifyEnabled false
         }
     }
+
+}
+
+coveralls {
+    jacocoReportPath = 'build/outputs/reports/coverage/debug/report.xml'
 }
 
 apply from: '../maven_push.gradle'

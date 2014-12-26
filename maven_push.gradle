@@ -12,6 +12,7 @@ if (isReleaseBuild()) {
 
 afterEvaluate { project ->
     uploadArchives {
+
         repositories {
             mavenDeployer {
                 beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
@@ -19,7 +20,10 @@ afterEvaluate { project ->
                 pom.artifactId = POM_ARTIFACT_ID
 
                 repository(url: sonatypeRepositoryUrl) {
-                    authentication(userName: nexusUsername, password: nexusPassword)
+                    authentication(
+                            userName: project.hasProperty("nexusUsername") ? nexusUsername : "",
+                            password: project.hasProperty("nexusPassword") ? nexusPassword : ""
+                    )
                 }
 
                 pom.project {
@@ -59,7 +63,7 @@ afterEvaluate { project ->
     }
 
     task androidJavadocs(type: Javadoc) {
-        source = android.sourceSets.main.allJava
+        source = android.sourceSets.main.java
     }
 
     task androidJavadocsJar(type: Jar) {
@@ -71,7 +75,7 @@ afterEvaluate { project ->
     task androidSourcesJar(type: Jar) {
         classifier = 'sources'
         //basename = artifact_id
-        from android.sourceSets.main.allSource
+        from android.sourceSets.main.java.toString()
     }
 
     artifacts {
