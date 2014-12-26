@@ -21,8 +21,8 @@ afterEvaluate { project ->
 
                 repository(url: sonatypeRepositoryUrl) {
                     authentication(
-                            userName: System.hasProperty("nexusUsername1") ? nexusUsername1 : "",
-                            password: System.hasProperty("nexusPassword") ? nexusPassword : ""
+                            userName: project.hasProperty("nexusUsername") ? nexusUsername : "",
+                            password: project.hasProperty("nexusPassword") ? nexusPassword : ""
                     )
                 }
 
