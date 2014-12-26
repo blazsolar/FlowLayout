@@ -3,14 +3,14 @@ jdk: oraclejdk7
 
 env:
   matrix:
-  - ANDROID_TARGET=android-21  ANDROID_ABI=armeabi-v7a
+  - ANDROID_TARGET=android-19  ANDROID_ABI=armeabi-v7a
 #  - ANDROID_TARGET=android-9  ANDROID_ABI=armeabi
 
 android:
   components:
     - build-tools-21.1.1
-    - android-21
-    - android-9
+    - android-19
+#    - android-9
 
 before_install:
   # Emulator
