@@ -31,17 +31,16 @@ compile "com.wefika:flowlayout:<version>"
 Usage
 -----
 ```xml
-<com.wefika.flowlayout.FlowLayout xmlns:android="http://schemas.android.com/apk/res/android"
-		xmlns:flowlayout="http://schemas.android.com/apk/res/si.solarb.flowlayout"
-		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		android:gravity="start|top">
+<com.wefika.flowlayout.FlowLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="start|top">
 
 	<View
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_margin="0dp"
-			android:layout_gravity="start|top" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Lorem ipsum" />
 
 </com.wefika.flowlayout.FlowLayout>
 ```
