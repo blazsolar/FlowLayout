@@ -50,10 +50,10 @@ public class MainActivity extends ListActivity {
     private class ExamplesAdapter extends ArrayAdapter {
 
         private Item[] mItems = {
-                new Item<BasicActivity>(R.string.activity_basic, BasicActivity.class),
-                new Item<AllInOneActivity>(R.string.activity_all_in_one, AllInOneActivity.class),
-                new Item<VisibilityActivity>(R.string.activity_visibility, VisibilityActivity.class),
-                new Item<ScrollActivity>(R.string.activity_scroll, ScrollActivity.class)
+                new Item<>(R.string.activity_basic, BasicActivity.class),
+                new Item<>(R.string.activity_all_in_one, AllInOneActivity.class),
+                new Item<>(R.string.activity_visibility, VisibilityActivity.class),
+                new Item<>(R.string.activity_scroll, ScrollActivity.class)
         };
 
         private LayoutInflater mInflater;
