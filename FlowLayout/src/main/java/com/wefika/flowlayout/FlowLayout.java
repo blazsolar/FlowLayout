@@ -94,10 +94,11 @@ public class FlowLayout extends ViewGroup {
         for(int i = 0; i < childCount; i++) {
 
             View child = getChildAt(i);
+            boolean lastChild = i == childCount - 1;
 
             if(child.getVisibility() == View.GONE) {
 
-                if(i == childCount - 1) {
+                if(lastChild) {
                     width = Math.max(width, lineWidth);
                     height += lineHeight;
                 }
@@ -151,7 +152,7 @@ public class FlowLayout extends ViewGroup {
                 lineHeight = Math.max(lineHeight, child.getMeasuredHeight() + lp.topMargin + lp.bottomMargin);
             }
 
-            if(i == childCount - 1) {
+            if(lastChild) {
                 width = Math.max(width, lineWidth);
                 height += lineHeight;
             }
