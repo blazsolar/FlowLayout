@@ -1,6 +1,10 @@
 Change Log
 ==========
 
+Version 0.4.1 *(2015-09-06)*
+----------------------------
+ * Removing `allowBackup` flag (by [RyanRamchandar](https://github.com/RyanRamchandar))
+
 Version 0.4.0 *(2014-12-26)*
 ----------------------------
  * Fixing issues with layout height.
