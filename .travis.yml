@@ -4,13 +4,13 @@ sudo: false
 
 env:
   matrix:
-  - ANDROID_TARGET=android-19  ANDROID_ABI=armeabi-v7a
+  - ANDROID_TARGET=android-23  ANDROID_ABI=armeabi-v7a
 #  - ANDROID_TARGET=android-9  ANDROID_ABI=armeabi
 
 android:
   components:
-    - build-tools-21.1.2
-    - android-19
+    - build-tools-23.0.1
+    - android-23
 #    - android-9
 
 before_install:
