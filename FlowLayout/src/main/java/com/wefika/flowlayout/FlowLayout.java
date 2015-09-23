@@ -24,6 +24,7 @@ import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -342,6 +343,10 @@ public class FlowLayout extends ViewGroup {
 	@Override
 	protected LayoutParams generateDefaultLayoutParams() {
 		return new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
+	}
+
+	@Override protected boolean checkLayoutParams(ViewGroup.LayoutParams p) {
+		return super.checkLayoutParams(p) && p instanceof LayoutParams;
 	}
 
 	@TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
