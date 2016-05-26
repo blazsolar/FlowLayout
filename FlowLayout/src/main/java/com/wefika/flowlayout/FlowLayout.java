@@ -275,7 +275,7 @@ public class FlowLayout extends ViewGroup {
 				// if height is match_parent we need to remeasure child to line height
 				if(lp.height == LayoutParams.MATCH_PARENT) {
 					int childWidthMode = MeasureSpec.AT_MOST;
-					int childWidthSize = lineWidth;
+					int childWidthSize = width - (lp.leftMargin + lp.rightMargin + getPaddingLeft() + getPaddingRight());
 
 					if(lp.width == LayoutParams.MATCH_PARENT) {
 						childWidthMode = MeasureSpec.EXACTLY;
